@@ -11,3 +11,33 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+@font-face {
+  font-family: "PoppinsMedium";
+  src: local("PoppinsMedium"),
+   url("./fonts/Poppins-Medium.ttf") format("truetype");
+  font-weight: medium;
+  }
+
+  @font-face {
+    font-family: "PoppinsBold";
+    src: local("PoppinsBold"),
+     url("./fonts/Poppins-Bold.ttf") format("truetype");
+    font-weight: bold;
+    }
+
+  @font-face {
+    font-family: "PoppinsRegular";
+    src: local("PoppinsRegular"),
+     url("./fonts/Poppins-Regular.ttf") format("truetype");
+    font-weight: normal;
+    }
+
+
+  @font-face {
+    font-family: "NeoGothisDB";
+    src: local("NeoGothisDB"),
+     url("./fonts/neogothis-adf-std.demibold.otf") format("opentype");
+    font-weight: bold;
+    }
