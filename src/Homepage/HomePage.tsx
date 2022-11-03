@@ -1,10 +1,17 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { H1, H4, H5, IMG, Main } from "../Styles/TextStyles";
 
 type Props = {};
 
 export default function HomePage({}: Props) {
+  const navigate = useNavigate();
+
+  const clickBackend = (hash: String) => {
+    navigate(`/dev/#${hash}`, { replace: true });
+  };
+
   return (
     <div>
       <Main>
@@ -32,7 +39,13 @@ export default function HomePage({}: Props) {
             </H5>
             <Headline>
               <H4>ENTWICKLUNG MOBILER APPS</H4>
-              <Circle>&gt;</Circle>
+              <Circle
+                onClick={() => {
+                  clickBackend("mobile");
+                }}
+              >
+                &gt;
+              </Circle>
             </Headline>
             <H5>
               Mit den von uns entwickelten nativen und plattformübergreifenden
@@ -44,7 +57,13 @@ export default function HomePage({}: Props) {
             </H5>
             <Headline>
               <H4>ENTWICKLUNG VON WEBANWENDUNGEN</H4>
-              <Circle>&gt;</Circle>
+              <Circle
+                onClick={() => {
+                  clickBackend("web");
+                }}
+              >
+                &gt;
+              </Circle>
             </Headline>
             <H5>
               Wir erstellen leicht zugängliche, responsive und sichere
@@ -55,7 +74,13 @@ export default function HomePage({}: Props) {
             </H5>
             <Headline>
               <H4>ENTWICKLUNG VON BACKENDS</H4>
-              <Circle>&gt;</Circle>
+              <Circle
+                onClick={() => {
+                  clickBackend("backend");
+                }}
+              >
+                &gt;
+              </Circle>
             </Headline>
             <H5>
               Das Herzstück einer mobilen Anwendung oder Website ist das

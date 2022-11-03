@@ -11,7 +11,7 @@ function DevPage({}: Props) {
         <div>
           <Content>
             <Left url="/media/images/react.png">
-              <H4>Webentwicklung</H4>
+              <H4 id="web">Webentwicklung</H4>
               <H5>
                 Bei der Entwicklung der Frontends von Webanwendungen setzen wir
                 überwiegend auf React. <br />
@@ -46,8 +46,8 @@ function DevPage({}: Props) {
             </Right>
           </Content>
           <Content>
-            <Left url="g">
-              <H4>Mobile Apps</H4>
+            <Left url="">
+              <H4 id="mobile">Mobile Apps</H4>
               <H5>
                 Bei der Entwicklung von mobilen Anwendungen unterstützen wir
                 sowohl iOS als auch Android. <br />
@@ -113,7 +113,7 @@ function DevPage({}: Props) {
           </Content>
           <Content>
             <Left url="/media/images/backend.png">
-              <H4>Backend Systeme</H4>
+              <H4 id="backend">Backend Systeme</H4>
               <H5>
                 Bei der Entwicklung von Backend Systemen setzen wir überwiegend
                 auf Amazon Web Services(AWS).
@@ -164,4 +164,4 @@ const Right = styled.div<ImageProps>`
   background-size: 50%;
 `;
 
-const Row = styled.div``;
+const Mobile = styled.div``;
