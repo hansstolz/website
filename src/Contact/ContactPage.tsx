@@ -151,7 +151,7 @@ function ContactPage({}: Props) {
             </Buttons>
           </Form>
         </div>
-        <IMG src="media/images/left02.png" />
+        <IMG src="media/images/left08.png" />
       </Main>
     </>
   );

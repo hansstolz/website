@@ -21,7 +21,7 @@ export default function ScrollToTop() {
         }
       }, 0);
     }
-  }, [pathname]);
+  }, [pathname, hash]);
 
   return null;
 }

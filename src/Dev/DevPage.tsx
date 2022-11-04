@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { H4, H5, Main } from "../Styles/TextStyles";
+import { H4, H5, IMG, Main } from "../Styles/TextStyles";
 
 type Props = {};
 
@@ -62,6 +62,20 @@ function DevPage({}: Props) {
               </H5>
             </Left>
             <Right url="/media/images/mobile.png">
+              <H4>iOS</H4>
+              <H5>
+                <ul>
+                  <li>native Entwicklung in SwiftUI</li>
+                  <li> Swift 5.7</li>
+                </ul>
+              </H5>
+              <H4>Android</H4>
+              <H5>
+                <ul>
+                  <li>native Entwicklung in Jetpack Compose</li>
+                  <li> Kotlin 1.7</li>
+                </ul>
+              </H5>
               <H4>Flutter</H4>
               <H5>
                 <ul>
@@ -69,16 +83,6 @@ function DevPage({}: Props) {
                   <li>Eintwicklung für iOS und Android</li>
                   <li> Dart 2.1</li>
                 </ul>
-              </H5>
-              <H4>iOS</H4>
-              <H5>
-                <li>native Entwicklung in SwiftUI</li>
-                <li> Swift 5.7</li>
-              </H5>
-              <H4>Android</H4>
-              <H5>
-                <li>native Entwicklung in Jetpack Compose</li>
-                <li> Kotlin 1.7</li>
               </H5>
             </Right>
           </Content>
@@ -112,7 +116,7 @@ function DevPage({}: Props) {
             </Right>
           </Content>
           <Content>
-            <Left url="/media/images/backend.png">
+            <Left url="">
               <H4 id="backend">Backend Systeme</H4>
               <H5>
                 Bei der Entwicklung von Backend Systemen setzen wir überwiegend
@@ -122,16 +126,36 @@ function DevPage({}: Props) {
                 AWS ist der führende internationale Anbieter im Cloud Computing
                 Diensten.
                 <br />
+                <br /> AWS bietet eine Vielzahl von Diensten an, die alle
+                Bereiche des Cloud Computing abdecken.
+                <br />
                 <br />
                 Unsere qualifizierten Mitarbeiter verfügen über das notwendige
                 Wissen im Umgang mit den umfangreichen Diensten, die AWS
                 anbietet.
               </H5>
             </Left>
-            <Right url=""></Right>
+            <Right url="/media/images/backend.png">
+              <H4>Amazon Web Services (Auswahl)</H4>
+              <H5>
+                <ul>
+                  <li>Serververwaltung(EC2, Lightsail)</li>
+                  <li>Datenspeicher für Server (EBS)</li>
+                  <li>Datenbanken (MySQL, Postgres, Aurora, DynamoDB)</li>
+                  <li>Speicher für Objekte (S3)</li>
+                  <li>Archivierung (Glacier)</li>
+                  <li>Benutzerverwaltung (Cognito)</li>
+                  <li>Domainverwaltung (Route53)</li>
+                  <li>Programmierung (Lambda Funktionen)</li>
+                  <li>Pushnachrichten (SNS)</li>
+                  <li>E-Mail-Service (SES)</li>
+                  <li>und vieles mehr</li>
+                </ul>
+              </H5>
+            </Right>
           </Content>
         </div>
-        <div>Left</div>
+        <IMG src="/media/images/left07.png" />
       </Main>
     </>
   );
@@ -163,5 +187,3 @@ const Right = styled.div<ImageProps>`
   background-position: center;
   background-size: 50%;
 `;
-
-const Mobile = styled.div``;
