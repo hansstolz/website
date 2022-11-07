@@ -41,10 +41,10 @@ function ContactPage() {
     const result = postData<RegistrationFormFields>(data);
 
     result.then((data) => {
-      if (data.body === "success") {
-        setSuccess("success");
+      if (data === "success") {
+        setSuccess(data);
       } else {
-        setSuccess("error");
+        setSuccess(data);
       }
     });
   });
