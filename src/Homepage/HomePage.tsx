@@ -106,7 +106,7 @@ export default function HomePage() {
 }
 
 const Content = styled.div`
-  width: 1100px;
+  width: 1000px;
 `;
 const TextContainer = styled.div`
   max-width: 900px;
@@ -135,16 +135,3 @@ const Headline = styled.div`
   column-gap: 24px;
   align-items: center;
 `;
-
-/*
-<H5>
-            Unser Prinzip ist es, den Kunden zuzuhören und sie zu verstehen
-            <br />
-            Bei der Lösung der Probleme arbeiten wir mit den Kunden eng zusammen
-            <br />
-            und unterstützen unsere Kunden in jeder Phase der Implementierung.
-            <br />
-            <br />
-            Wir stehen unseren Kunden stets zur Verfügung.
-          </H5>
-          */

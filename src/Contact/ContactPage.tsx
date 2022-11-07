@@ -108,7 +108,7 @@ function ContactPage() {
                     label={"Nachricht"}
                     id={"message"}
                     kind={"medium"}
-                    rows={5}
+                    rows={12}
                     cols={60}
                     register={register}
                   ></FormInput>
@@ -210,8 +210,8 @@ export default ContactPage;
 
 const Content = styled.div`
   display: grid;
-  column-gap: 200px;
-  grid-template-columns: 500px 300px;
+  column-gap: 100px;
+  grid-template-columns: 500px 300px 50px;
 `;
 
 const Form = styled.form`
