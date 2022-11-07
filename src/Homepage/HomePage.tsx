@@ -13,7 +13,7 @@ export default function HomePage() {
   return (
     <div>
       <Main>
-        <div>
+        <Content>
           <H1>
             Lösungen durch
             <br />
@@ -97,7 +97,7 @@ export default function HomePage() {
             <br />
             <b>Wir verzichten komplett auf Cookies.</b>
           </TextContainer>
-        </div>
+        </Content>
 
         <IMG src="media/images/left01.png" />
       </Main>
@@ -105,6 +105,9 @@ export default function HomePage() {
   );
 }
 
+const Content = styled.div`
+  width: 1100px;
+`;
 const TextContainer = styled.div`
   max-width: 900px;
   min-width: 300px;

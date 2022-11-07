@@ -1,8 +1,8 @@
-import React, { ReactNode, useLayoutEffect } from "react";
+import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
-import { BrowserRouter, useLocation } from "react-router-dom";
+import { HashRouter, useLocation } from "react-router-dom";
 
 import "./fonts/Poppins-Medium.ttf";
 
@@ -11,9 +11,9 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-  <BrowserRouter>
+  <HashRouter>
     <React.StrictMode>
       <App />
     </React.StrictMode>
-  </BrowserRouter>
+  </HashRouter>
 );
