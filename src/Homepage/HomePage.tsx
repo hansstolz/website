@@ -3,9 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { H1, H4, H5, IMG, Main } from "../Styles/TextStyles";
 
-type Props = {};
-
-export default function HomePage({}: Props) {
+export default function HomePage() {
   const navigate = useNavigate();
 
   const clickBackend = (hash: String) => {
@@ -87,9 +85,17 @@ export default function HomePage({}: Props) {
               Backend.
               <br />
               Wir entwickeln das Backend ausschließlich auf Unix-Plattformen mit
-              NodeJS oder Swift Vapor. Außerdem nutzen wir die umfangreichen
-              technischen Dienste von Amazon Web Services(AWS).
+              NodeJS, Swift Vapor oder serverless mit AWS Lambdas. Außerdem
+              nutzen wir die umfangreichen technischen Dienste von Amazon Web
+              Services(AWS).
             </H5>
+          </TextContainer>
+          <TextContainer>
+            <br />
+            <br />
+            <br />
+            <br />
+            <b>Wir verzichten komplett auf Cookies.</b>
           </TextContainer>
         </div>
 

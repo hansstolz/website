@@ -204,25 +204,23 @@ function Privacy({}: Props) {
           <br />
           <br />
           <div>
-            Alfahosting GmbH
+            Amazon AWS Lightsail
             <br />
+            Wir hosten unsere Website bei Amazon AWS. <br />
+            Anbieter ist die Amazon AWS (nachfolgend: Amazon).
+            <br />
+            Details entnehmen Sie der Datenschutzerklärung von Amazon:
+            https://amazon.de/datenschutz.
           </div>
-          <div>
-            Ankerstraße 3b
-            <br />
-          </div>
-          <div>
-            06108 Halle /Saale
-            <br />
-            <br />
-          </div>
-          Mehr Informationen finden Sie hier:{" "}
-          <a href="https://alfahosting.de/agb-alfahosting/">Alfahosting GmbH</a>
-          <br />
           <br />
           Grundlage für die Datenverarbeitung ist Art. 6 Abs. 1 lit. f DSGVO,
           der die Verarbeitung von Daten zur Erfüllung eines Vertrags oder
-          vorvertraglicher Maßnahmen gestattet.
+          vorvertraglicher Maßnahmen gestattet. Wir haben einen Vertrag über
+          Auftragsverarbeitung (AVV) mit dem oben genannten Anbieter
+          geschlossen. Hierbei handelt es sich um einen datenschutzrechtlich
+          vorgeschriebenen Vertrag, der gewährleistet, dass dieser die
+          personenbezogenen Daten unserer Websitebesucher nur nach unseren
+          Weisungen und unter Einhaltung der DSGVO verarbeitet.
           <br />
           <br />
           <h5>

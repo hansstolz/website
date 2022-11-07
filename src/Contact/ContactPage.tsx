@@ -1,18 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Button from "../Buttons/Button";
 import { FormInput } from "../Form/form-input";
 import { H4, IMG, Main, P } from "../Styles/TextStyles";
 import "../Styles/colors.css";
 import { useForm } from "react-hook-form";
-
-type Props = {};
+import postData from "../Util/HTTPRequest";
 
 export type RegistrationFormFields = {
   company: string;
   lastName: string;
   firstName: string;
   email: string;
+  phone: string;
+  mobile: string;
   message: string;
   backend: boolean;
   android: boolean;
@@ -20,16 +21,32 @@ export type RegistrationFormFields = {
   web: boolean;
 };
 
-function ContactPage({}: Props) {
+export type ServerPesponse = {
+  body: string;
+  isBase64Encoded: false;
+  statusCode: number;
+  headers: Object;
+};
+
+function ContactPage() {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<RegistrationFormFields>();
 
-  const onSubmit = handleSubmit((data) => {
-    alert(data);
-    console.log(data);
+  const [success, setSuccess] = useState("start");
+
+  const onSubmit = handleSubmit(async (data) => {
+    const result = postData<RegistrationFormFields>(data);
+
+    result.then((data) => {
+      if (data.body === "success") {
+        setSuccess("success");
+      } else {
+        setSuccess("error");
+      }
+    });
   });
 
   const emailPattern = {
@@ -44,112 +61,144 @@ function ContactPage({}: Props) {
           <H4>Wir freuen uns von Ihnen zu hören.</H4>
           <br />
           <br />
-          <Form onSubmit={onSubmit}>
-            <Content>
-              <div>
-                <P>Ich interessiere mich für:</P>
-                <br />
-                <FormInput<RegistrationFormFields>
-                  name={"web"}
-                  label={"Webentwicklung (Frontend)"}
-                  id={"web"}
-                  kind={"large"}
-                  type={"checkbox"}
-                  register={register}
-                />
+          {success === "start" || success === "error" ? (
+            <Form onSubmit={onSubmit}>
+              <Content>
+                <div>
+                  <P>Ich interessiere mich für:</P>
+                  <br />
+                  <FormInput<RegistrationFormFields>
+                    name={"web"}
+                    label={"Webentwicklung (Frontend)"}
+                    id={"web"}
+                    kind={"large"}
+                    type={"checkbox"}
+                    register={register}
+                  />
 
-                <FormInput<RegistrationFormFields>
-                  name={"ios"}
-                  label={"iOS Entwicklung (iPad)"}
-                  id={"ios"}
-                  kind={"large"}
-                  errors={errors}
-                  type={"checkbox"}
-                  register={register}
-                />
-                <FormInput<RegistrationFormFields>
-                  name={"android"}
-                  label={"Android"}
-                  id={"android"}
-                  kind={"large"}
-                  type={"checkbox"}
-                  register={register}
-                />
+                  <FormInput<RegistrationFormFields>
+                    name={"ios"}
+                    label={"iOS Entwicklung (iPad)"}
+                    id={"ios"}
+                    kind={"large"}
+                    errors={errors}
+                    type={"checkbox"}
+                    register={register}
+                  />
+                  <FormInput<RegistrationFormFields>
+                    name={"android"}
+                    label={"Android"}
+                    id={"android"}
+                    kind={"large"}
+                    type={"checkbox"}
+                    register={register}
+                  />
 
-                <FormInput<RegistrationFormFields>
-                  name={"backend"}
-                  label={"Backend"}
-                  id={"backend"}
-                  kind={"large"}
-                  type={"checkbox"}
-                  register={register}
-                />
-                <br />
-                <FormInput<RegistrationFormFields>
-                  name={"message"}
-                  label={"Nachricht"}
-                  id={"message"}
-                  kind={"medium"}
-                  rows={5}
-                  cols={60}
-                  register={register}
-                ></FormInput>
-              </div>
-              <Right>
-                <FormInput<RegistrationFormFields>
-                  name={"company"}
-                  label={"Firma"}
-                  id={"company"}
-                  kind={"medium"}
-                  errors={errors}
-                  register={register}
-                />
+                  <FormInput<RegistrationFormFields>
+                    name={"backend"}
+                    label={"Backend"}
+                    id={"backend"}
+                    kind={"large"}
+                    type={"checkbox"}
+                    register={register}
+                  />
+                  <br />
+                  <FormInput<RegistrationFormFields>
+                    name={"message"}
+                    label={"Nachricht"}
+                    id={"message"}
+                    kind={"medium"}
+                    rows={5}
+                    cols={60}
+                    register={register}
+                  ></FormInput>
+                </div>
+                <Right>
+                  <FormInput<RegistrationFormFields>
+                    name={"company"}
+                    label={"Firma"}
+                    id={"company"}
+                    kind={"medium"}
+                    errors={errors}
+                    register={register}
+                  />
+                  <FormInput<RegistrationFormFields>
+                    name={"firstName"}
+                    label={"Vorname"}
+                    id={"firstName"}
+                    kind={"medium"}
+                    errors={errors}
+                    register={register}
+                    rules={{
+                      required: "Pflichtfeld",
+                    }}
+                  ></FormInput>
 
-                <FormInput<RegistrationFormFields>
-                  name={"lastName"}
-                  label={"Nachname"}
-                  id={"lastName"}
-                  kind={"medium"}
-                  errors={errors}
-                  register={register}
-                  rules={{
-                    required: "Pflichtfeld",
-                  }}
-                ></FormInput>
+                  <FormInput<RegistrationFormFields>
+                    name={"lastName"}
+                    label={"Nachname"}
+                    id={"lastName"}
+                    kind={"medium"}
+                    errors={errors}
+                    register={register}
+                    rules={{
+                      required: "Pflichtfeld",
+                    }}
+                  ></FormInput>
 
-                <FormInput<RegistrationFormFields>
-                  name={"firstName"}
-                  label={"Vorname"}
-                  id={"firstName"}
-                  kind={"medium"}
-                  errors={errors}
-                  register={register}
-                  rules={{
-                    required: "Pflichtfeld",
-                  }}
-                ></FormInput>
-
-                <FormInput<RegistrationFormFields>
-                  name={"email"}
-                  label={"E-Mail"}
-                  id={"email"}
-                  kind={"medium"}
-                  errors={errors}
-                  register={register}
-                  rules={{
-                    required: "Pflichtfeld",
-                    pattern: emailPattern,
-                  }}
-                ></FormInput>
-              </Right>
-            </Content>
-            <Buttons>
-              <div></div>
-              <Button size="large" state="primary" type="submit">
-                Senden
-              </Button>
-            </Buttons>
-          </Form>
+                  <FormInput<RegistrationFormFields>
+                    name={"email"}
+                    label={"E-Mail"}
+                    id={"email"}
+                    kind={"medium"}
+                    errors={errors}
+                    register={register}
+                    rules={{
+                      required: "Pflichtfeld",
+                      pattern: emailPattern,
+                    }}
+                  ></FormInput>
+                  <FormInput<RegistrationFormFields>
+                    name={"phone"}
+                    label={"Telefon"}
+                    id={"phone"}
+                    kind={"medium"}
+                    errors={errors}
+                    register={register}
+                  ></FormInput>
+                  <FormInput<RegistrationFormFields>
+                    name={"mobile"}
+                    label={"Mobile"}
+                    id={"mobile"}
+                    kind={"medium"}
+                    errors={errors}
+                    register={register}
+                  ></FormInput>
+                </Right>
+              </Content>
+              <Buttons>
+                <div></div>
+                <Button size="large" state="primary" type="submit">
+                  Senden
+                </Button>
+              </Buttons>
+              {success === "error" && (
+                <Red>
+                  <h4>Etwas ist schief gelaufen.</h4>
+                  <h4>Versuchen Sie es noch einmal.</h4>
+                </Red>
+              )}
+            </Form>
+          ) : (
+            <div>
+              <img
+                src="https://artexxis.de/media/images/contact.png"
+                width="549px"
+                height="252px"
+                alt="Wir setzen uns mit Ihnen in Verbindung"
+              />
+            </div>
+          )}
         </div>
         <IMG src="media/images/left08.png" />
       </Main>
@@ -181,37 +230,6 @@ const Buttons = styled.div`
   margin-right: 150px;
 `;
 
-/*
-mport React from "react";
-import { useForm } from "react-hook-form";
-import "./styles.css";
-
-export default function App() {
-  const {
-    register,
-    getValues,
-    formState: { errors }
-  } = useForm({
-    mode: "onChange"
-  });
-  const atLeastOne = () =>
-    getValues("test").length ? true : "Please tell me if this is too hard.";
-
-  console.log(errors);
-
-  return (
-    <form>
-      {[1, 2, 3].map((value) => (
-        <input
-          key={value}
-          type="checkbox"
-          value={value}
-          {...register("test", {
-            validate: atLeastOne
-          })}
-        />
-      ))}
-    </form>
-  );
-}
-*/
+const Red = styled.div`
+  color: red;
+`;
