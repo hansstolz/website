@@ -9,6 +9,10 @@ import ContactPage from "./Contact/ContactPage";
 import Privacy from "./Privacy/Privacy";
 import Imprint from "./Imprint/Imprint";
 import ScrollToTop from "./Util/ScrollToTop";
+import { useMediaQuery } from "react-responsive";
+
+import TextView, { MobileController } from "./TextView";
+import { Props } from "./Styles/TextStyles";
 
 //
 
@@ -32,29 +36,41 @@ function App() {
 
 export default App;
 
+const DesktopView = (onClick: () => void) => {
+  return (
+    <NavbarContainer>
+      <IMG onClick={onClick} src="/media/images/logo.png" />
+      <StyledLink to="/">Home</StyledLink>
+
+      <StyledLink to="/dev">Softwareentwicklung</StyledLink>
+
+      <StyledLink to="/consulting">Beratung</StyledLink>
+      <StyledLink to="/contact">Kontakt</StyledLink>
+    </NavbarContainer>
+  );
+};
+
 function Layout() {
+  const isDesktop = useMediaQuery({
+    query: "(min-width: 900px)",
+  });
+
   const navigate = useNavigate();
 
   const onClick = () => {
     navigate("/", { replace: true });
   };
 
+  const { onClickToggle, toggle } = MobileController();
+
   return (
-    <div>
-      {/* A "layout route" is a good place to put markup you want to
-          share across all the pages on your site, like navigation. */}
+    <MainContainer toggle={isDesktop}>
       <header>
-        <NavbarContainer>
-          <IMG onClick={onClick} src="/media/images/logo.png" />
-          <StyledLink to="/">Home</StyledLink>
-
-          <StyledLink to="/dev">Softwareentwicklung</StyledLink>
-
-          <StyledLink to="/consulting">Beratung</StyledLink>
-          <StyledLink to="/contact">Kontakt</StyledLink>
-        </NavbarContainer>
+        {isDesktop
+          ? DesktopView(onClick)
+          : TextView(onClick, onClickToggle, toggle)}
       </header>
-      <div className="container">
+      <div>
         <Outlet />
       </div>
 
@@ -65,7 +81,7 @@ function Layout() {
           <StyledLink to="/imprint">Impressum</StyledLink>
         </NavbarContainer>
       </footer>
-    </div>
+    </MainContainer>
   );
 }
 
@@ -84,6 +100,7 @@ const NavbarContainer = styled.div`
 const IMG = styled.img`
   margin-right: 90px;
 `;
+
 const StyledLink = styled(Link)`
   color: black;
   text-decoration: none;
@@ -100,3 +117,42 @@ const StyledLink = styled(Link)`
     color: red;
   }
 `;
+
+const MainContainer = styled.div<Props>`
+  margin-left: ${(props) => (props.toggle ? "90px;" : "16px;")};
+  max-width: ${(props) => (props.toggle ? "1440px;" : "100%;")};
+`;
+
+/*
+width: 300px;
+  min-height: 100vh;
+  text-align: center;
+  padding-top: 112px;
+  background: #245f92;
+  z-index: 10;
+  position: relative;
+  top: 0;
+  left: 0;
+
+  ${(props) => {
+    if (props.toggle) {
+      return `
+      transform: translateX(0);
+      transition: all 0.4s ease-in-out;
+      `;
+    } else {
+      return `
+      transform: translateX(-100%);
+      transition: all 0.4s ease-in-out;
+
+      `;
+    }
+  }}
+
+
+  {isDesktop
+          ? DesktopView(onClick)
+          : TextView(onClick, onClickToggle, toggle)}
+
+
+  */
