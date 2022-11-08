@@ -65,11 +65,11 @@ function Layout() {
 
   return (
     <MainContainer toggle={isDesktop}>
-      <header>
+      <div>
         {isDesktop
           ? DesktopView(onClick)
           : TextView(onClick, onClickToggle, toggle)}
-      </header>
+      </div>
       <div>
         <Outlet />
       </div>
@@ -89,12 +89,13 @@ const NavbarContainer = styled.div`
   display: flex;
   flex-direction: row;
   column-gap: 90px;
-
+  justify-content: flex-start;
   font-family: PoppinsMedium;
   font-weight: medium;
   font-size: 14px;
-  padding: 30px;
   align-items: center;
+  padding-top: 30px;
+  padding-bottom: 30px;
 `;
 
 const IMG = styled.img`
@@ -119,7 +120,7 @@ const StyledLink = styled(Link)`
 `;
 
 const MainContainer = styled.div<Props>`
-  margin-left: ${(props) => (props.toggle ? "90px;" : "16px;")};
+  margin-left: ${(props) => (props.toggle ? "60px;" : "16px;")};
   max-width: ${(props) => (props.toggle ? "1440px;" : "100%;")};
 `;
 
