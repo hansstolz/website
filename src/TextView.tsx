@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import "../src/Styles/colors.css";
-import { IMG, Props } from "./Styles/TextStyles";
+import { Props } from "./Styles/TextStyles";
 
 export const MobileController = () => {
   const [toggle, setToggle] = useState(false);
@@ -21,7 +21,7 @@ function TextView(
 ) {
   return (
     <MobileContainer>
-      <MobileImg src="/media/images/logo.png" />
+      <MobileImg onClick={onClick} src="/media/images/logo.png" />
       <MenuIcon onClick={onClickToggle} toggle={toggle}>
         <span></span>
       </MenuIcon>
@@ -48,6 +48,7 @@ const MobileContainer = styled.div`
   flex-direction: column;
   row-gap: 30px;
   margin-bottom: 60px;
+  widht: 100%;
 `;
 
 const StyledLink = styled(Link)`
@@ -138,10 +139,11 @@ const MenuContainer = styled.div<Props>`
   padding-top: 100px;
   padding-left: 30px;
   box-shadow: 10px 10px 5px gray;
+  opacity: 0.9;
 `;
 
 const MobileImg = styled.img`
   position: absolute;
   top: 8px;
-  left: 0;
+  left: 16px;
 `;

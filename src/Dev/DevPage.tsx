@@ -1,18 +1,24 @@
 import React from "react";
+import { useMediaQuery } from "react-responsive";
 import styled from "styled-components";
-import { H4, H5, IMG, Main } from "../Styles/TextStyles";
+import { H4, H5, IMG, Main, Props } from "../Styles/TextStyles";
+import "../../src/Styles/colors.css";
 
-type Props = {};
+function DevPage() {
+  const isDesktop = useMediaQuery({
+    query: "(min-width: 900px)",
+  });
 
-function DevPage({}: Props) {
   return (
     <>
-      <Main>
+      <Main toggle={isDesktop}>
         <div>
-          <Content>
+          <Content toggle={isDesktop}>
             <Left url="/media/images/react.png">
-              <H4 id="web">Webentwicklung</H4>
-              <H5>
+              <H4 toggle={isDesktop} id="web">
+                Webentwicklung
+              </H4>
+              <H5 toggle={isDesktop}>
                 Bei der Entwicklung der Frontends von Webanwendungen setzen wir
                 überwiegend auf React. <br />
                 <br />
@@ -26,8 +32,8 @@ function DevPage({}: Props) {
               </H5>
             </Left>
             <Right url="">
-              <H4>React Komponenten</H4>
-              <H5>
+              <H4 toggle={isDesktop}>React Komponenten</H4>
+              <H5 toggle={isDesktop}>
                 <ul>
                   <li>Benutzerverwaltung und Anmeldung</li>
                   <li>Stammdatenverwaltung</li>
@@ -44,11 +50,21 @@ function DevPage({}: Props) {
                 </ul>
               </H5>
             </Right>
+            {!isDesktop && (
+              <div className="astrodivider">
+                <div className="astrodividermask"></div>
+                <span>
+                  <i>&#10038;</i>
+                </span>
+              </div>
+            )}
           </Content>
-          <Content>
+          <Content toggle={isDesktop}>
             <Left url="">
-              <H4 id="mobile">Mobile Apps</H4>
-              <H5>
+              <H4 toggle={isDesktop} id="mobile">
+                Mobile Apps
+              </H4>
+              <H5 toggle={isDesktop}>
                 Bei der Entwicklung von mobilen Anwendungen unterstützen wir
                 sowohl iOS als auch Android. <br />
                 <br />
@@ -62,22 +78,22 @@ function DevPage({}: Props) {
               </H5>
             </Left>
             <Right url="/media/images/mobile.png">
-              <H4>iOS</H4>
-              <H5>
+              <H4 toggle={isDesktop}>iOS</H4>
+              <H5 toggle={isDesktop}>
                 <ul>
                   <li>native Entwicklung in SwiftUI</li>
                   <li> Swift 5.7</li>
                 </ul>
               </H5>
-              <H4>Android</H4>
-              <H5>
+              <H4 toggle={isDesktop}>Android</H4>
+              <H5 toggle={isDesktop}>
                 <ul>
                   <li>native Entwicklung in Jetpack Compose</li>
                   <li> Kotlin 1.7</li>
                 </ul>
               </H5>
-              <H4>Flutter</H4>
-              <H5>
+              <H4 toggle={isDesktop}>Flutter</H4>
+              <H5 toggle={isDesktop}>
                 <ul>
                   <li>Cross-Plattform-Werkzeug von Google</li>
                   <li>Eintwicklung für iOS und Android</li>
@@ -85,11 +101,19 @@ function DevPage({}: Props) {
                 </ul>
               </H5>
             </Right>
+            {!isDesktop && (
+              <div className="astrodivider">
+                <div className="astrodividermask"></div>
+                <span>
+                  <i>&#10038;</i>
+                </span>
+              </div>
+            )}
           </Content>
-          <Content>
+          <Content toggle={isDesktop}>
             <Left url="/media/images/portfolio.png">
-              <H4>Portfolio</H4>
-              <H5>
+              <H4 toggle={isDesktop}>Portfolio</H4>
+              <H5 toggle={isDesktop}>
                 Um das Rad nicht jedes mal neu zu erfinden, haben wir modulare
                 und leicht anpassbare Komponenten entwickelt.
                 <br /> <br />
@@ -101,8 +125,8 @@ function DevPage({}: Props) {
               </H5>
             </Left>
             <Right url="">
-              <H4>Mobile Komponenten </H4>
-              <H5>
+              <H4 toggle={isDesktop}>Mobile Komponenten </H4>
+              <H5 toggle={isDesktop}>
                 <ul>
                   <li>Benutzerverwaltung und Anmeldung</li>
                   <li>Lokale Datenbank</li> <li>Bildverwaltung</li>
@@ -114,11 +138,21 @@ function DevPage({}: Props) {
                 </ul>
               </H5>
             </Right>
+            {!isDesktop && (
+              <div className="astrodivider">
+                <div className="astrodividermask"></div>
+                <span>
+                  <i>&#10038;</i>
+                </span>
+              </div>
+            )}
           </Content>
-          <Content>
+          <Content toggle={isDesktop}>
             <Left url="">
-              <H4 id="backend">Backend Systeme</H4>
-              <H5>
+              <H4 toggle={isDesktop} id="backend">
+                Backend Systeme
+              </H4>
+              <H5 toggle={isDesktop}>
                 Bei der Entwicklung von Backend Systemen setzen wir überwiegend
                 auf Amazon Web Services(AWS).
                 <br />
@@ -136,8 +170,8 @@ function DevPage({}: Props) {
               </H5>
             </Left>
             <Right url="/media/images/backend.png">
-              <H4>Amazon Web Services (Auswahl)</H4>
-              <H5>
+              <H4 toggle={isDesktop}>Amazon Web Services (Auswahl)</H4>
+              <H5 toggle={isDesktop}>
                 <ul>
                   <li>Serververwaltung(EC2, Lightsail)</li>
                   <li>Datenspeicher für Server (EBS)</li>
@@ -155,7 +189,7 @@ function DevPage({}: Props) {
             </Right>
           </Content>
         </div>
-        <IMG src="/media/images/left07.png" />
+        {isDesktop && <IMG src="/media/images/left07.png" />}
       </Main>
     </>
   );
@@ -163,11 +197,13 @@ function DevPage({}: Props) {
 
 export default DevPage;
 
-const Content = styled.div`
+const Content = styled.div<Props>`
   display: grid;
-  column-gap: 120px;
-  grid-template-columns: 520px 520px;
-  margin-bottom: 120px;
+  column-gap: ${(props) => (props.toggle ? "120px" : "0px;")};
+  row-gap: ${(props) => (props.toggle ? "60px" : "10px;")};
+  grid-template-columns: ${(props) => (props.toggle ? "520px 520px;" : "1fr;")};
+  margin-bottom: ${(props) => (props.toggle ? "120px" : "30px;")};
+  padding: ${(props) => (props.toggle ? "0" : "16px;")};
 `;
 
 type ImageProps = {

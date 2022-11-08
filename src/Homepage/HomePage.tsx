@@ -115,8 +115,9 @@ const Content = styled.div`
   padding: 0;
 `;
 const TextContainer = styled.div<Props>`
-  max-width: ${(props) => (props.toggle ? "900px;" : "320px;")};
+  max-width: ${(props) => (props.toggle ? "900px;" : "100%;")};
   min-width: 300px;
+  padding: 16px;
 `;
 
 const Circle = styled.div`
@@ -140,4 +141,5 @@ const Headline = styled.div`
   flex-direction: row;
   column-gap: 24px;
   align-items: center;
+  margin-right: 16px;
 `;

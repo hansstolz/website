@@ -13,14 +13,6 @@ export const Main = styled.div<Props>`
   grid-template-columns: ${(props) => (props.toggle ? "1fr 300px;" : "1fr")};
 `;
 
-const BaseText = styled.div`
-  font-family: PoppinsMedium;
-  font-style: normal;
-  color: ${(props) => (props.color ? props.color : "black")};
-  margin-top: 0;
-  margin-bottom: 0;
-`;
-
 export const LI = styled.li`
   font-family: PoppinsMedium;
   font-weight: medium;
@@ -64,6 +56,7 @@ export const H1 = styled.h1<Props>`
   font-size: ${(props) => (props.toggle ? "96px;" : "32px;")};
   margin-top: 60px;
   margin-bottom: 60px;
+  padding-left: ${(props) => (props.toggle ? "0" : "8px;")};
 `;
 
 export const Label = styled.label`

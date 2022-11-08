@@ -1,14 +1,16 @@
 import React from "react";
+import { useMediaQuery } from "react-responsive";
 import styled from "styled-components";
-import { Bold, IMG, Main, P } from "../Styles/TextStyles";
+import { Bold, IMG, Main, P, Props } from "../Styles/TextStyles";
 
-type Props = {};
-
-function Imprint({}: Props) {
+function Imprint() {
+  const isDesktop = useMediaQuery({
+    query: "(min-width: 900px)",
+  });
   return (
-    <Main>
+    <Main toggle={isDesktop}>
       <div>
-        <div>
+        <Header toggle={isDesktop}>
           <P>
             <Bold>artexxis GmbH + Co. KG</Bold>
             <br />
@@ -40,7 +42,7 @@ function Imprint({}: Props) {
             <br />
             <br />
             <br />
-            <Content>
+            <Content toggle={isDesktop}>
               <Left>
                 <Bold>Haftung für Inhalte</Bold>
                 Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt.
@@ -106,23 +108,27 @@ function Imprint({}: Props) {
               </Right>
             </Content>
           </P>
-        </div>
+        </Header>
 
         <ul></ul>
       </div>
-      <IMG src="media/images/left01.png" />
+      {isDesktop && <IMG src="media/images/left01.png" />}
     </Main>
   );
 }
 
 export default Imprint;
 
-const Content = styled.div`
+const Content = styled.div<Props>`
   display: grid;
   column-gap: 120px;
-  grid-template-columns: 500px 500px;
+  grid-template-columns: ${(props) => (props.toggle ? "500px 500px;" : "1fr;")};
+  padding: 0;
 `;
 
+const Header = styled.div<Props>`
+  padding: ${(props) => (props.toggle ? "0" : "32px;")};
+`;
 const Left = styled.div``;
 
 const Right = styled.div``;

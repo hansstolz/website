@@ -1,16 +1,18 @@
 import React from "react";
+import { useMediaQuery } from "react-responsive";
 import styled from "styled-components";
-import { H4, H5, IMG, Main } from "../Styles/TextStyles";
+import { H4, H5, IMG, Main, Props } from "../Styles/TextStyles";
 
-type Props = {};
-
-function ConsultingPage({}: Props) {
+function ConsultingPage() {
+  const isDesktop = useMediaQuery({
+    query: "(min-width: 900px)",
+  });
   return (
-    <Main>
-      <Content>
+    <Main toggle={isDesktop}>
+      <Content toggle={isDesktop}>
         <Left url="media/images/idea.png">
-          <H4>Idee oder Problem?</H4>
-          <H5>
+          <H4 toggle={isDesktop}>Idee oder Problem?</H4>
+          <H5 toggle={isDesktop}>
             Sie haben eine Idee oder ein Problem, das sie noch nicht genau
             benennen oder spezifizieren können.
             <br />
@@ -20,8 +22,8 @@ function ConsultingPage({}: Props) {
             Prototypen zu erstellen.
             <br />
             <br />
-            <H4>Digitalisierung</H4>
-            <H5>
+            <H4 toggle={isDesktop}>Digitalisierung</H4>
+            <H5 toggle={isDesktop}>
               Wer sich heute am Markt behaupten möchte. Zukunftsfähig bleiben.
               Flexibel auf Veränderungen reagieren. <br />
               Der kommt an der Digitalisierung von Produkten und
@@ -33,12 +35,14 @@ function ConsultingPage({}: Props) {
               <br />
               <br />
             </H5>
-            <H5>Wir stehen Ihnen mit Rat und Tat zur Verfügung.</H5>
+            <H5 toggle={isDesktop}>
+              Wir stehen Ihnen mit Rat und Tat zur Verfügung.
+            </H5>
           </H5>
         </Left>
         <Right>
-          <H4>Unsere Leistungen</H4>
-          <H5>
+          <H4 toggle={isDesktop}>Unsere Leistungen</H4>
+          <H5 toggle={isDesktop}>
             <ul>
               <li>Analyse von Prozessen</li>
               <li>Scribbles</li>
@@ -56,20 +60,20 @@ function ConsultingPage({}: Props) {
           </H5>
         </Right>
       </Content>
-      <div>
-        <IMG src="media/images/left06.png" />
-      </div>
+      <div>{isDesktop && <IMG src="media/images/left06.png" />}</div>
     </Main>
   );
 }
 
 export default ConsultingPage;
 
-const Content = styled.div`
+const Content = styled.div<Props>`
   display: grid;
   column-gap: 120px;
-  grid-template-columns: 520px 520px;
-  margin-bottom: 120px;
+  grid-template-columns: ${(props) => (props.toggle ? "520px 520px;" : "1fr;")};
+
+  margin-bottom: ${(props) => (props.toggle ? "120px" : "30px;")};
+  padding: ${(props) => (props.toggle ? "0" : "16px;")};
 `;
 
 type ImageProps = {

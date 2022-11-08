@@ -1,13 +1,15 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { useMediaQuery } from "react-responsive";
 import styled from "styled-components";
-import { IMG, Main } from "../Styles/TextStyles";
+import { IMG, Main, Props } from "../Styles/TextStyles";
 
-type Props = {};
-
-function Privacy({}: Props) {
+function Privacy() {
+  const isDesktop = useMediaQuery({
+    query: "(min-width: 900px)",
+  });
   return (
-    <Main>
-      <Content>
+    <Main toggle={isDesktop}>
+      <Content toggle={isDesktop}>
         <Left>
           <h3>1. Datenschutz auf einen Blick</h3>
           <h4>Allgemeine Hinweise</h4>
@@ -234,17 +236,18 @@ function Privacy({}: Props) {
           </h5>
         </Right>
       </Content>
-      <IMG src="media/images/left03.png" />
+      {isDesktop && <IMG src="media/images/left03.png" />}
     </Main>
   );
 }
 
 export default Privacy;
 
-const Content = styled.div`
+const Content = styled.div<Props>`
   display: grid;
   column-gap: 120px;
-  grid-template-columns: 500px 500px;
+  grid-template-columns: ${(props) => (props.toggle ? "500px 500px;" : "1fr;")};
+  padding: ${(props) => (props.toggle ? "0" : "32px;")};
 `;
 
 const Left = styled.div``;

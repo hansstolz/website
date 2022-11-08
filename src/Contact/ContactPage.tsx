@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Button from "../Buttons/Button";
 import { FormInput } from "../Form/form-input";
-import { H4, IMG, Main, P } from "../Styles/TextStyles";
+import { H4, IMG, Main, P, Props } from "../Styles/TextStyles";
 import "../Styles/colors.css";
 import { useForm } from "react-hook-form";
 import postData from "../Util/HTTPRequest";
+import { useMediaQuery } from "react-responsive";
 
 export type RegistrationFormFields = {
   company: string;
@@ -29,6 +30,10 @@ export type ServerPesponse = {
 };
 
 function ContactPage() {
+  const isDesktop = useMediaQuery({
+    query: "(min-width: 900px)",
+  });
+
   const {
     register,
     handleSubmit,
@@ -56,14 +61,14 @@ function ContactPage() {
 
   return (
     <>
-      <Main>
+      <Main toggle={isDesktop}>
         <div>
-          <H4>Wir freuen uns von Ihnen zu hören.</H4>
+          <H4 toggle={isDesktop}>Wir freuen uns von Ihnen zu hören.</H4>
           <br />
           <br />
           {success === "start" || success === "error" ? (
             <Form onSubmit={onSubmit}>
-              <Content>
+              <Content toggle={isDesktop}>
                 <div>
                   <P>Ich interessiere mich für:</P>
                   <br />
@@ -109,7 +114,7 @@ function ContactPage() {
                     id={"message"}
                     kind={"medium"}
                     rows={12}
-                    cols={60}
+                    cols={50}
                     register={register}
                   ></FormInput>
                 </div>
@@ -200,7 +205,7 @@ function ContactPage() {
             </div>
           )}
         </div>
-        <IMG src="media/images/left08.png" />
+        {isDesktop && <IMG src="media/images/left08.png" />}
       </Main>
     </>
   );
@@ -208,10 +213,11 @@ function ContactPage() {
 
 export default ContactPage;
 
-const Content = styled.div`
+const Content = styled.div<Props>`
   display: grid;
   column-gap: 100px;
-  grid-template-columns: 500px 300px 50px;
+  grid-template-columns: ${(props) =>
+    props.toggle ? "500px 300px 50px;" : "1fr;"};
 `;
 
 const Form = styled.form`
@@ -220,6 +226,7 @@ const Form = styled.form`
 
 const Right = styled.div`
   margin-top: 30px;
+  margin-right: 90px;
 `;
 
 const Buttons = styled.div`
