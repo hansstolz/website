@@ -13,6 +13,8 @@ import { useMediaQuery } from "react-responsive";
 
 import TextView, { MobileController } from "./TextView";
 import { Props } from "./Styles/TextStyles";
+import Blog from "./Blog/Blog";
+import BlogDetail from "./Blog/BlogDetail";
 
 //
 
@@ -28,6 +30,10 @@ function App() {
           <Route path="contact" element={<ContactPage />} />
           <Route path="privacy" element={<Privacy />} />
           <Route path="imprint" element={<Imprint />} />
+          <Route path="blog" element={<Blog />} />
+          <Route path="blogdetail">
+            <Route path=":blogId" element={<BlogDetail />} />
+          </Route>
         </Route>
       </Routes>
     </div>
@@ -46,6 +52,7 @@ const DesktopView = (onClick: () => void) => {
 
       <StyledLink to="/consulting">Beratung</StyledLink>
       <StyledLink to="/contact">Kontakt</StyledLink>
+      <StyledLink to="/blog">Blog</StyledLink>
     </NavbarContainer>
   );
 };

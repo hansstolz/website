@@ -42,6 +42,14 @@ export const H5 = styled.h5<Props>`
   margin-bottom: 0;
 `;
 
+export const H3 = styled.h4<Props>`
+  font-family: PoppinsBold;
+  font-weight: bold;
+  font-size: ${(props) => (props.toggle ? "36px;" : "20px;")};
+  margin-top: 48px;
+  margin-bottom: 12px;
+`;
+
 export const H4 = styled.h4<Props>`
   font-family: PoppinsBold;
   font-weight: bold;
